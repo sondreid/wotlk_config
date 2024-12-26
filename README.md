@@ -1,8 +1,10 @@
 
-## Networking
+# Networking
+## Verifying ports
+netstat -an | grep <portnumber>
+lsof -i:<portnumber> 
 
-
-## Project structure
+# Project structure
 
 ## NoIP
 
@@ -23,4 +25,6 @@ After which we can use a fully qualified domain name.
 ## AzerothCore ports
 
 8085
-3724
+
+
+
