@@ -1,30 +1,25 @@
-
-# Networking
-## Verifying ports
-netstat -an | grep <portnumber>
-lsof -i:<portnumber> 
-
-# Project structure
-
-## NoIP
-
-Dynamic DNS
-Networking guide
-
-https://www.azerothcore.org/wiki/networking 
-
-First set up to local IP to verify connectivity.
-After which we can use a fully qualified domain name.
+# Getting started
 
 
-### Nginx
+This repo contains config files, guides and HOWTO's for Azerothcore.
+
+## Client
+
+A client is needed (3.3.5a).
+
+Download client from Chromiecraft [here](https://www.chromiecraft.com/en/downloads/), but any 3.3.5a client will do.
+Mods can be found on forums, etc. 
+
+
+To manage bots, the unbot addon is needed [link] (https://github.com/noisiver/unbot-addon/tree/english). Download it, and copy files into interface/addons.
 
 
 
-
-## AzerothCore ports
-
-8085
+## Connecting to the server
+We are not in retail (Kansas) anymore. To use a different server, edit or create Data/enUS/realmlist.wtf, to point to new host.
 
 
 
+# Configurations
+
+This repo contains configration files, submodules, etc. Have a look at server_config to see the current sever config.
