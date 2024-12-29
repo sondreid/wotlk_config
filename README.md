@@ -11,13 +11,15 @@ Download client from Chromiecraft [here](https://www.chromiecraft.com/en/downloa
 Mods can be found on forums, etc. 
 
 
-To manage bots, the unbot addon is needed [link] (https://github.com/noisiver/unbot-addon/tree/english). Download it, and copy files into interface/addons.
+To manage bots, the unbot addon is needed [link](https://github.com/noisiver/unbot-addon/tree/english). Download it, and copy files into interface/addons.
 
 
 
 ## Connecting to the server
 We are not in retail (Kansas) anymore. To use a different server, edit or create Data/enUS/realmlist.wtf, to point to new host.
+`set realmlist *hostname* `
 
+gotcha: realmlist.wtf should not be a txt file, .wtf should be the file extension
 
 
 # Configurations
