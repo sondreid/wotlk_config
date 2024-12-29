@@ -29,9 +29,15 @@ First set up to local IP to verify connectivity.
 After which we can use a fully qualified domain name.
 
 
-### Nginx
+## Compilation and start
 
+acore.sh
 
+run-worldserver
+run-authserver
+build
+
+compile
 
 
 ## AzerothCore ports
