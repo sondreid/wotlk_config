@@ -13,3 +13,7 @@ Changed bind address in authserver to 192.168.1.21
 # #[1.0.2] - 2024-08-15
 
 Modified worldserver to with new settings. Settings stored in /server_config
+
+# #[1.0.2] - 2024-12-28
+
+Added playerbots. Migrated to mysql. Changed realmlist to new host. 
