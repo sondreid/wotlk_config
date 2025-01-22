@@ -1,6 +1,4 @@
 #!/bin/bash
-
-# Set backup directory
 BACKUP_DIR="/home/$USER/db_backup"
 
 DATE=$(date +"%Y%m%d_%H%M%S")
