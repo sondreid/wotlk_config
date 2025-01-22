@@ -1,23 +1,34 @@
 #!/bin/bash
 BACKUP_DIR="/home/$USER/db_backup"
-
+GDRIVE_FOLDER_ID="1Q3O_kHhY_0SwBtOPxUFkV1I2ou0eYhEL"
 DATE=$(date +"%Y%m%d_%H%M%S")
+
+
+TEST_MODE="false"
+
 DB_PASS="$2"
 DB_USER="$1"
 
 
-# Create backups with date stamp
-mysqldump -u "$DB_USER" -p"$DB_PASS" acore_auth > $BACKUP_DIR/acore_auth_$DATE.sql
-mysqldump -u "$DB_USER" -p"$DB_PASS" acore_characters > $BACKUP_DIR/acore_characters_$DATE.sql
-
-#mysqldump -u "$DB_USER" -p"$DB_PASS" acore_world > $BACKUP_DIR/acore_world_$DATE.sql
-
-# Remove backups older than 7 days (optional)
-#find "$BACKUP_DIR" -name "*.sql" -mtime +7 -delete
+if [ $TEST_MODE = true ]; then
+    echo "Test data" >> "$BACKUP_DIR/test_auth_$DATE.sql"
+    echo "Test data" >> "$BACKUP_DIR/test_characters_$DATE.sql"
+    echo "Creating test files with date: $DATE"
 
 
-# Append to log
-echo "Backup completed on $(date)" >> "$BACKUP_DIR/backup.log"
+else
+
+    echo "making backups"
+    mysqldump -u "$DB_USER" -p"$DB_PASS" acore_auth > $BACKUP_DIR/acore_auth_$DATE.sql
+    mysqldump -u "$DB_USER" -p"$DB_PASS" acore_characters > $BACKUP_DIR/acore_characters_$DATE.sql
+
+    #mysqldump -u "$DB_USER" -p"$DB_PASS" acore_world > $BACKUP_DIR/acore_world_$DATE.sql
+
+
+
+fi
+
+
 
 
 
@@ -26,7 +37,6 @@ for file in "$BACKUP_DIR"/*_"$DATE".sql; do
     if [ -f "$file" ]; then
         gdrive files upload --parent "$GDRIVE_FOLDER_ID" "$file"
         
-        # Check if upload was successful
         if [ $? -eq 0 ]; then
             echo "Successfully uploaded $file to Google Drive" >> "$BACKUP_DIR/backup.log"
         else
@@ -34,3 +44,9 @@ for file in "$BACKUP_DIR"/*_"$DATE".sql; do
         fi
     fi
 done
+
+touch "$BACKUP_DIR/backup.log" 2>/dev/null
+echo "Backup completed on $(date)" >> "$BACKUP_DIR/backup.log"
+
+# Delete older files 
+find "$BACKUP_DIR" -name "*.sql" -mtime +14 -delete
