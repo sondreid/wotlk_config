@@ -45,6 +45,11 @@ compile
 8085
 3724
 
+start mysql
+
+service mysqld status
+service mysqld stop
+service mysqld start 
 
 
 
