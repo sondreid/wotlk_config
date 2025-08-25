@@ -1,23 +1,17 @@
 #!/bin/bash
 
+echo "Deleting .dist files (excluding modules/ folder)..."
+echo
 
-
-find . -name "*.dist" -type f | while read -r file; do
-    echo "Found: $file"
-    read -p "Delete this file? (y/N): " response
-    case "$response" in
-        [yY]|[yY][eE][sS])
-            if rm "$file"; then
-                echo "✓ Deleted: $file"
-            else
-                echo "✗ Failed to delete: $file"
-            fi
-            ;;
-        *)
-            echo "→ Skipped: $file"
-            ;;
-    esac
-    echo "---"
+# Find and delete all .dist files, excluding top-level modules/ folder
+find . -name "*.dist" -type f ! -path "./modules/*" | while read -r file; do
+    echo "Deleting: $file"
+    if rm "$file"; then
+        echo "✓ Deleted successfully"
+    else
+        echo "✗ Failed to delete"
+    fi
+    echo
 done
 
-echo "Done processing .dist files."
+echo "Finished processing .dist files."
